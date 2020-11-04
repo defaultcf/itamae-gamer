@@ -5,10 +5,11 @@ user "steam" do
 end
 
 # Install steamcmd
-remote_file "/etc/apt/sources.list.d/steam.list"
-
+package "software-properties-common"
+execute "add-apt-repository non-free"
 execute "dpkg --add-architecture i386"
 execute "apt update"
 execute "echo steam steam/question select 'I AGREE' | debconf-set-selections"
 execute "echo steam steam/license note '' | debconf-set-selections"
+package "lib32gcc1"
 package "steamcmd"
